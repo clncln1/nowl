@@ -1,0 +1,111 @@
+<!--
+* Created with JetBrains WebStorm.
+* User: D060785
+* Date: 10.09.13
+* Time: 17:41
+* To change this template use File | Settings | File Templates.
+*/-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <title>nowl</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/front.css" rel="stylesheet">
+
+    <script src="js/lib/jquery-1.10.js"></script>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/lib/d3.v3.min.js"></script>
+    <script src="js/lib/cubism.js"></script>
+
+
+    <script src="js/front.js"></script>
+    <script src="js/horizon.js"></script>
+    <script src="js/controllers/nav.js"></script>
+    <script src="js/controllers/events.js"></script>
+    <script src="js/controllers/dashboard.js"></script>
+    <script src="js/controllers/admin.js"></script>
+    <script src="js/controllers/server_basics.js"></script>
+    <script src="js/controllers/server_detail.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="NavCtrl">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-collapse collapse" style="float:left;margin-left: -14px;">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="navbar-brand" ng-click="tab('dashboard')">nowl</a>
+                </li>
+                <li ng-class="currentTab=='dashboard' && 'active'">
+                    <a class="navbar-brand" ng-click="tab('dashboard')">Dashboard</a>
+                </li>
+                <li class="dropdown" ng-class="currentTab=='server_detail' && 'active'">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Servers <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="server in global.servers">
+                            <a ng-click="showServer(server)">{{server.hostname}}</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" ng-click="tab('dashboard')"><span class="glyphicon glyphicon-th spaced grey"></span> Show overview</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Graphs <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="graph in graphs">
+                            <a ng-click="showGraph(graph)">{{ graph.name }}</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" ng-click="showHome()"><span class="glyphicon glyphicon-th spaced grey"></span> Show overview</a></li>
+                    </ul>
+                </li>
+                <li ng-class="currentTab=='events' && 'active'">
+                    <a class="navbar-brand" ng-click="tab('events')">Events</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-header navbar-right">
+            <a class="navbar-brand" ng-click="tab('admin')"><span class="glyphicon glyphicon-wrench spaced"></span> Settings</a>
+            <a class="navbar-brand" href="/logout"><span class="glyphicon glyphicon-user spaced"></span> logout</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container tabholder">
+    <div class="animate switch" ng-hide="currentTab != 'dashboard'">
+        <div ng-include="'template/dashboard.html'"></div>
+    </div>
+    <div class="animate switch" ng-hide="currentTab != 'admin'">
+        <div ng-include="'template/admin.html'"></div>
+    </div>
+    <div class="animate switch" ng-hide="currentTab != 'serverbasics'">
+        <div ng-include="'template/server_basics.html'"></div>
+    </div>
+    <div class="animate switch" ng-hide="currentTab != 'server_detail'">
+        <div ng-include="'template/server_detail.html'"></div>
+    </div>
+    <div class="animate switch" ng-hide="currentTab != 'events'">
+        <div ng-include="'template/events.html'"></div>
+    </div>
+</div>
+
+
+
+<div id="footer">
+    <p>&copy; 2013 nowl </p>
+</div>
+</body>
+</html>

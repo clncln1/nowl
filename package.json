@@ -1,0 +1,18 @@
+{
+	"name": "nowl",
+	"version": "0.1.0",
+	"author": "clncln1",
+	"description": "Node-based server monitoring",
+	"contributors":[],
+	"main":"./lib/index.js",
+	"bin":{
+		"nowl":"./lib/index.js"
+	},
+	"dependencies":{
+		"async": "0.2.x",
+		"promise": "3.2.x",
+		"socket.io": "0.9.x",
+        "sqlite3": "2.1.x",
+        "nodemailer": "0.5.x"
+	}
+}

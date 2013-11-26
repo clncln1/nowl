@@ -1,0 +1,151 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.modal-backdrop {
+    background-color: rgba(100,100,100,0.5);
+}
+.modal {
+    overflow-y: auto !important;
+}
+.modal-open, .modal-open .navbar-fixed-top {
+    margin-right: 0 !important;
+}
+.navbar>.container>div>ul>li:first-child>a {
+    margin-right: 15px;
+}
+a {
+    cursor: pointer;
+}
+
+.navbar-header a, .nav > li >a {
+    padding-top: 17px !important;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    color: rgb(190,190,190);
+}
+
+.nav i {
+    font-weight: 300;
+}
+.nav .dropdown-menu li:hover i {
+    color: white;
+}
+
+.navbar-sub {
+    border-radius: 0;
+    padding-left: 168px;
+}
+.navbar-sub a {
+    border: 0 !important;
+    padding-bottom: 14px !important;
+}
+.navbar-sub li {
+    height: 50px;
+}
+.navbar-sub li.active {
+    border-right: 1px solid;
+    border-left: 1px solid;
+    border-color: #E7E7E7;
+}
+.navbar-sub li.active>a {
+    background-color: white !important;
+}
+
+
+
+.animate.ng-hide-add {
+    -webkit-transition:0.3s linear all;
+    -moz-transition:0.3s linear all;
+    -o-transition:0.3s linear all;
+    transition:0.3s linear all;
+
+    opacity:1;
+}
+.animate.ng-hide-add.ng-hide-add-active {
+    opacity:0;
+}
+
+/* When showing an element */
+.animate.ng-hide-remove {
+    -webkit-transition:0.3s linear all;
+    -moz-transition:0.3s linear all;
+    -o-transition:0.3s linear all;
+    transition:0.3s linear all;
+    display:block!important;
+    opacity:0;
+}
+.animate,.animate.ng-hide-remove.ng-hide-remove-active {
+    opacity:1;
+}
+.switch.ng-hide-remove {
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+.switch {
+    position: absolute;
+}
+
+
+
+#footer {
+    position: fixed;
+    bottom: -4px;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid lightgray;
+    padding-top: 4px;
+    background: white;
+}
+
+
+.glyphicon.spaced {
+    margin-right: 3px;
+}
+.glyphicon.grey {
+    color: darkgrey;
+}
+
+
+.tabholder {
+    position: relative;
+}
+.tabholder > div {
+    width: 100%;
+}
+
+
+.events-table th.client, .events-table th.type {
+    width: 14%;
+}
+.events-table th.functions{
+    width: 16%;
+}
+.events-table th.functions_small{
+    width: 9%;
+}
+.events-table th.warn{
+    width: 3%;
+}
+.events-table input, .events-table select{
+    width: 123px;
+    border-radius: 2px;
+    border: 1px solid lightgray;
+    padding-left: 3px;
+}
+.events-table input[type=checkbox]{
+    align-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.btn {
+    transition: background-color 0.7s;
+}

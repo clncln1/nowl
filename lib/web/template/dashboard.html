@@ -1,0 +1,40 @@
+<div ng-controller="dashboardCtrl">
+    <h2 class="text-primary">Dashboard</h2>
+
+    <h4>All servers</h4>
+    <table class="table table-striped">
+        <tr>
+            <th>Host</th>
+            <th>OS</th>
+            <th>CPU</th>
+            <th>CPUs</th>
+            <th>IPs</th>
+            <th>Node</th>
+            <th style="width:154px">Last online</th>
+        </tr>
+
+        <tr ng-repeat="server in global.servers">
+            <td><a ng-click="showServer(server)">{{server.hostname}}</a></td>
+            <td>{{server.os}}</td>
+            <td>{{server.cpu}}</td>
+            <td>{{server.cpu_amount}}</td>
+            <td>
+                <span class="text-info" ng-repeat="ip in server.ips">
+                    {{ip}}<span ng-if="$index < server.ips.length-1">, </span>
+                </span>
+            </td>
+            <td>{{server.node_v}}</td>
+            <td>{{server.last_online | beautifiedDate}}</td>
+        </tr>
+    </table>
+
+    <div style="height:47px">
+        <div class="col-xs-2">
+            <h4>Current Status</h4>
+        </div>
+        <div class="col-xs-2">
+            <select class="form-control" ng-model="quickview.statusType" ng-options="name for name in quickview.statusTypes" ng-change="drawGraph()"></select>
+        </div>
+    </div>
+    <div id="stat_overview" style="position:relative"></div>
+</div>

@@ -1,0 +1,106 @@
+<div ng-controller="eventsCtrl">
+    <h2 class="text-primary">Events</h2>
+
+
+    <h4>Event Types</h4>
+    <table class="table table-striped events-table" style="width:100%">
+        <tr>
+            <th class="client">Client</th>
+            <th class="type">Type</th>
+            <th class="props">Properties</th>
+            <th class="warn">Warn</th>
+            <th class="warn">Crit.</th>
+            <th class="functions_small"></th>
+        </tr>
+
+        <tr ng-repeat="eventType in global.eventTypes">
+            <td>{{getServer(eventType.clientId).hostname}}</td>
+            <td>{{eventType.name}}</td>
+            <td>
+                <span class="text-info" ng-repeat="prop in eventType.props">
+                    {{prop.name}}:
+                        <input type="text" ng-if="prop.type=='string'" ng-model="prop.value" placeholder="{{prop.default_value}}">
+                        <input type="number" ng-if="prop.type=='number'" ng-model="prop.value" placeholder="{{prop.default_value}}">
+                        <select ng-if="prop.type=='enum'" ng-model="prop.value" ng-options="opt for opt in prop.select_values"></select><span ng-if="$index < eventType.props.length-1">, </span>
+                </span>
+            <td><input type="checkbox" ng-model="eventType.is_warning"> </td>
+            <td><input type="checkbox" ng-model="eventType.is_critical"> </td>
+            <td>
+               <button ng-click="createEvent(eventType)" class="btn btn-default">
+                   <span class="glyphicon glyphicon-plus spaced"></span>Create</button>
+            </td>
+        </tr>
+    </table>
+
+    <h4>Existing event watchers</h4>
+    <table class="table table-striped events-table" style="width:100%">
+        <tr>
+            <th class="client">Client</th>
+            <th class="type">Type</th>
+            <th class="props">Properties</th>
+            <th class="status">Status</th>
+            <th class="functions"></th>
+        </tr>
+
+        <tr ng-repeat="event in global.events">
+            <td>{{event.server.hostname}}</td>
+            <td>{{event.eventType.name}}</td>
+            <td>
+                <span ng-repeat="prop in event.props">
+                    <span class="text-info">{{prop.name}}</span>: {{prop.value}}<span ng-if="$index < event.props.length-1">, </span>
+                </span>
+                <span class="text-info" style="font-style: italic" ng-if="event.impact_level==3">info</span>
+                <span class="text-warning" style="font-style: italic" ng-if="event.impact_level==2">warning</span>
+                <span class="text-danger" style="font-style: italic" ng-if="event.impact_level==1">critical</span>
+            </td>
+            <td>
+                <span class="text-danger" ng-hide="event.currentStatus">stopped</span>
+                <span class="text-success" ng-show="event.currentStatus">running</span>
+            </td>
+            <td>
+               <button ng-click="showEventLog(event)" data-toggle="modal" href="#eventDetailModal" class="btn btn-default">
+                   <span class="glyphicon glyphicon-list spaced"></span>Log</button>
+               <button ng-click="removeEvent(event)" class="btn btn-danger">
+                   <span class="glyphicon glyphicon-remove spaced"></span>Remove</button>
+            </td>
+        </tr>
+    </table>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="eventDetailModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">History of
+                        <span class="text-info">{{eventDetail.event.eventType.name}}</span> on
+                        <span class="text-info">{{eventDetail.event.server.hostname}}</span></h4>
+                </div>
+                <div class="modal-body" style="padding: 0 10px">
+                    <div class="text-center" ng-if="!eventDetail.log.length"><br>Could not find events of this type on the server.</div>
+                    <table class="table table-striped" style="width:100%" ng-if="eventDetail.log.length">
+                        <tr>
+                            <th >Date</th>
+                            <th class="type">Status</th>
+                            <th class="props">Description</th>
+                        </tr>
+
+                        <tr ng-repeat="item in eventDetail.log">
+                            <td>{{item.timestamp | beautifiedDate}}</td>
+                            <td>
+                                <span class="text-danger" ng-hide="item.status">stopped</span>
+                                <span class="text-success" ng-show="item.status">running</span></td>
+                            <td>{{item.description}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-ok spaced"></span> Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

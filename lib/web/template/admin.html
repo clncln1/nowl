@@ -1,0 +1,73 @@
+<div ng-controller="adminCtrl">
+    <h2 class="text-primary">Settings</h2>
+
+
+    <form class="form-horizontal" role="form" id="userForm" ng-submit="submitForm($event)">
+        <div class="form-group">
+            <label for="username" class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="username" placeholder="Name" name="username" ng-model="global.user.name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-4">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password"  ng-model="global.user.password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label text-info">email</label>
+        </div>
+
+
+        <div class="form-group">
+            <label for="email_threshold" class="col-lg-2 control-label">Receive emails for</label>
+            <div class="col-lg-4">
+                <select id="email_threshold" name="email_threshold" class="form-control" ng-model="global.user.email_threshold" ng-options="item.index as item.name for item in emails.levels"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email_address" class="col-lg-2 control-label">Sender Address</label>
+            <div class="col-lg-4">
+                <input type="email" class="form-control" id="email_address" placeholder="User" name="email_address"  ng-model="global.user.email_address">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email_receiver" class="col-lg-2 control-label">Receivers</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="email_receiver" placeholder="User" name="email_receiver"  ng-model="global.user.email_receiver">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email_user" class="col-lg-2 control-label">Login</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" id="email_user" placeholder="User" name="email_user"  ng-model="global.user.email_user">
+            </div>
+            <div class="col-lg-2">
+                <input type="password" class="form-control" id="email_password" placeholder="Password" name="email_password"  ng-model="global.user.email_password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email_user" class="col-lg-2 control-label">Server</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" id="email_server" placeholder="Server" name="email_server"  ng-model="global.user.email_server">
+            </div>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" id="email_port" placeholder="Port" name="email_port"  ng-model="global.user.email_port">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email_user" class="col-lg-2 control-label"></label>
+            <div class="col-lg-2">
+                <button class="btn btn-primary" id="userSubmitBtn" type="submit" data-loading-text="Saving..." data-success-text="Saved." data-danger-text="Saving failed.."><span class="glyphicon glyphicon-floppy-disk spaced"></span> Save</button>
+            </div>
+            <div class="col-md-6 alert alert-danger" ng-show="global.user.email_not_working">
+                Your mail settings don't seem to work. Please check them again.
+            </div>
+            <div class="col-md-6 alert alert-success" ng-show="global.user.email_working">
+                Your email is set up! Please check your inbox, you should have received a mail from us.
+            </div>
+        </div>
+    </form>
+</div>

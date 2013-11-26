@@ -1,0 +1,111 @@
+<!--
+* Created with JetBrains WebStorm.
+* User: D060785
+* Date: 10.09.13
+* Time: 17:41
+* To change this template use File | Settings | File Templates.
+*/-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <title>Node Health: Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/front.css" rel="stylesheet">
+
+    <script src="js/lib/jquery-1.10.js"></script>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
+</head>
+
+<body ng-app="app">
+<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavCtrl">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">nowl</a>
+            <a class="navbar-brand" id="currenPollName">Login</a>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="container">
+        <h1>now!</h1>
+        <p>Let nowl monitor your servers and never get stressed by failing servers again.</p>
+    </div>
+</div>
+
+<div class="container" ng-controller="loginCtrl">
+    <div class="col-xs-6">
+        <h2 class="text-primary">Log In</h2>
+
+        <div class="alert alert-danger animate" ng-show="wrongPassword">
+            Your Login credentials are incorrect. Please try again.
+        </div>
+        <form class="form-horizontal" role="form" id="loginForm" ng-submit="doLogin($event)" enctype="multipart/form-data" method="post">
+            <div class="form-group">
+                <label for="username" class="col-lg-2 control-label">Name</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="username" placeholder="Name" name="username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-lg-2 control-label">Password</label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+     <!--
+    <form class="form-horizontal" role="form" ng-show="createAccount" id="createAccountForm" ng-submit="doCreateAccount()">
+        <div class="form-group">
+            <label for="username" class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="newUsername" placeholder="Name" name="username">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" id="newPassword" placeholder="Password" name="password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-default">Create Account</button>
+            </div>
+        </div>
+    </form>-->
+</div>
+
+
+<div id="footer">
+    <p>&copy; 2013 nowl</p>
+</div>
+</body>
+</html>
