@@ -1,0 +1,31 @@
+.chart-title {
+    display: inline;
+    padding-right: 7px;
+    font-weight: 100;
+    font-family: "Open Sans", sans-serif;
+    margin: 1px;
+}
+
+.sub-chart-name {
+    display: block;
+    font-weight: 100;
+    font-family: "Open Sans", sans-serif;
+    margin: 1px;
+}
+.sub-chart-name-small {
+    display: inline;
+    padding-right: 7px;
+    font-weight: 100;
+    font-family: "Open Sans", sans-serif;
+    margin: 1px;
+    font-size: 24px;
+}
+
+
+.sub-chart-value {
+    color: #444;
+    font-size: 23px;
+    width: 50px;
+    display: inline-block;
+    margin: 1px;
+}

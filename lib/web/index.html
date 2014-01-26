@@ -14,6 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
 
     <title>nowl</title>
 
@@ -22,6 +23,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/front.css" rel="stylesheet">
+    <link href="charts/css/style.css" rel="stylesheet">
 
     <script src="js/lib/jquery-1.10.js"></script>
     <script src="js/lib/angular.min.js"></script>
@@ -29,6 +31,19 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/lib/d3.v3.min.js"></script>
     <script src="js/lib/cubism.js"></script>
+
+
+    <script src="charts/vendor/three.js"></script>
+    <script src="charts/vendor/stats.min.js"></script>
+    <script src="charts/vendor/CSS3DRenderer.js"></script>
+    <script src="charts/utils.js"></script>
+    <script src="charts/main.js"></script>
+    <script src="charts/webglattribute.js"></script>
+    <script src="charts/plugins.js"></script>
+    <script src="charts/camera.js"></script>
+    <script src="charts/drawer.js"></script>
+    <script src="charts/chart.js"></script>
+    <script src="charts/linechart.js"></script>
 
 
     <script src="js/front.js"></script>
@@ -84,7 +99,7 @@
 </div>
 
 
-<div class="container tabholder">
+<div class="tabholder">
     <div class="animate switch" ng-hide="currentTab != 'dashboard'">
         <div ng-include="'template/dashboard.html'"></div>
     </div>
